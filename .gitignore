@@ -1,0 +1,18 @@
+
+# Build output
+bin/
+obj/
+.vs/
+
+# IDE files
+*.user
+*.suo
+.vscode/
+
+# Compiled mod files
+*.tmod
+*.pdb
+
+# Temporary files
+*.tmp
+*.log

@@ -1,4 +1,3 @@
-
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -10,19 +9,17 @@ namespace GuidesAdvice
 {
     public class GuideAdviceGlobalNPC : GlobalNPC
     {
-        public override void GetChat(
-            NPC npc,
-            ref string chat)
+        public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type != NPCID.Guide)
                 return;
 
-            GuideAdvicePlayer player =
-                Main.LocalPlayer.GetModPlayer<GuideAdvicePlayer>();
-
-            player.ShowingDetails = false;
-
-            chat = GuideAdviceText.GetHint();
+            // Most of the time we leave the vanilla randomized dialogue untouched.
+            // Occasionally, a stage-appropriate mod message is selected as an
+            // additional entry in the effective dialogue pool.
+            GuideAdvicePlayer player = Main.LocalPlayer.GetModPlayer<GuideAdvicePlayer>();
+            if (Main.rand.Next(4) == 0)
+                chat = Progression.GuideSmallTalk.GetMessage(player);
         }
 
         public override void RegisterChatButtons(
@@ -32,14 +29,17 @@ namespace GuidesAdvice
             if (npc.type != NPCID.Guide)
                 return;
 
+            // Our Hint button replaces the vanilla Guide Tip button.
             var vanillaTip = interactions.Interactions
                 .OfType<NPCInteractions.Actions.GuideTip>()
                 .FirstOrDefault();
 
-            interactions.Disable(vanillaTip);
+            if (vanillaTip != null)
+                interactions.Disable(vanillaTip);
 
-            interactions.Append(new ElaborateInteraction());
-            interactions.Append(new BackToHintInteraction());
+            interactions.Append(new WhatsNextInteraction());
+            interactions.Append(new HowDoIInteraction());
+            interactions.Append(new HintInteraction());
         }
     }
 }
