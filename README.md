@@ -6,7 +6,9 @@ A tModLoader 1.4.5 mod that turns the vanilla Guide into a contextual Terraria p
 
 - Preserves the Guide's original randomized opening dialogue and occasionally selects a stage-appropriate custom small-talk line.
 - Adds **What's Next?** for the next major progression objective.
-- Adds **How do I do that?** for boss encounter and summoning guidance.
+- Combines the next progression objective with practical summoning and encounter instructions in **What's Next?**
+- Teaches the player to house the Guide first; the vanilla Housing button is replaced by this advice until he has a home.
+- Changes the same button to **What Helps?** for concise, boss-specific fight advice.
 - Adds **Hint** for stage-specific randomized hints.
 - Tracks shown hint IDs per character and cycles through applicable hints before repeating.
 - Keeps the vanilla Guide crafting interaction.

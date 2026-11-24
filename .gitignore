@@ -1,18 +1,15 @@
-
-# Build output
+# tModLoader / .NET build output
 bin/
 obj/
-.vs/
-
-# IDE files
-*.user
-*.suo
-.vscode/
-
-# Compiled mod files
 *.tmod
 *.pdb
 
-# Temporary files
+# IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Temporary output
 *.tmp
 *.log

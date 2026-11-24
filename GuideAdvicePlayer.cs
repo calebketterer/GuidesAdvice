@@ -11,6 +11,9 @@ namespace GuidesAdvice
         private readonly HashSet<string> seenHintIds = new HashSet<string>();
         public string LastSmallTalkId { get; private set; } = string.Empty;
 
+        // Temporary state for the Guide's two-step primary conversation button.
+        public bool ShowingWhatHelps { get; set; } = false;
+
         public void SetLastSmallTalkId(string id)
         {
             LastSmallTalkId = id;

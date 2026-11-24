@@ -5,13 +5,27 @@ namespace GuidesAdvice.GuideInteractions
 {
     public class WhatsNextInteraction : NPCInteraction
     {
-        public override string GetText() => "What's Next?";
+        public override string GetText()
+        {
+            GuideAdvicePlayer player = LocalPlayer.GetModPlayer<GuideAdvicePlayer>();
+            return player.ShowingWhatHelps ? "What Helps?" : "What's Next?";
+        }
 
         public override bool Condition() => true;
 
         public override void Interact()
         {
-            Main.npcChatText = GuideAdviceText.GetNextObjective();
+            GuideAdvicePlayer player = LocalPlayer.GetModPlayer<GuideAdvicePlayer>();
+
+            if (!player.ShowingWhatHelps)
+            {
+                Main.npcChatText = GuideAdviceText.GetNextObjective(TalkNPC);
+                player.ShowingWhatHelps = true;
+            }
+            else
+            {
+                Main.npcChatText = GuideAdviceText.GetBossFightTips(TalkNPC);
+            }
         }
     }
 }

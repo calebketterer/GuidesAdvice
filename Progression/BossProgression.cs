@@ -17,125 +17,51 @@ namespace GuidesAdvice.Progression
             return ProgressionManager.GetCurrentStage() != ProgressionStage.Completed;
         }
 
-        public static string GetNextVitalBossInstructions()
+        public static string GetBossFightTips(NPC guide)
         {
+            if (guide != null && guide.homeless)
+            {
+                return "For my room, use player-placed walls and a closed frame. A Work "
+                    + "Bench counts as a table, a Torch as a light, and a Wood Platform "
+                    + "can serve as the entrance. Leave a solid floor tile with room "
+                    + "above; the Housing menu will show what's missing.";
+            }
+
             switch (ProgressionManager.GetCurrentStage())
             {
                 case ProgressionStage.EarlyPreHardmode:
-                    return "Eye of Cthulhu\n\n"
-                        + "You can summon it with a Suspicious Looking Eye at night "
-                        + "(between 7:30 PM and 4:30 AM). The item is crafted from "
-                        + "6 Lenses at a Demon or Crimson Altar.\n\n"
-                        + "It may also appear naturally at dusk if you have at "
-                        + "least 200 maximum life, at least 11 defense, and four "
-                        + "town NPCs present. No other boss can be alive. Build "
-                        + "an arena and bring mobility accessories.";
+                    return "For the Eye of Cthulhu, build a long platform arena and add Campfires for regeneration. Prioritize movement with boots, a double jump, or a grappling hook. A bow or other ranged weapon lets you keep your distance; bring healing potions.";
 
                 case ProgressionStage.EvilBiome:
-                    if (WorldGen.crimson)
-                    {
-                        return "Brain of Cthulhu\n\n"
-                            + "You can summon it by breaking three Crimson Hearts "
-                            + "in the underground Crimson. Alternatively, craft a "
-                            + "Bloody Spine from 30 Vicious Powder and 15 Vertebrae "
-                            + "at a Crimson Altar, then use it while in the Crimson. "
-                            + "The Bloody Spine can be used at any time.";
-                    }
-
-                    return "Eater of Worlds\n\n"
-                        + "You can summon it by breaking three Shadow Orbs "
-                        + "in the underground Corruption. Alternatively, craft "
-                        + "Worm Food from 30 Vile Powder and 15 Rotten Chunks "
-                        + "at a Demon Altar, then use it while in the Corruption. "
-                        + "Worm Food can be used at any time.";
+                    return WorldGen.crimson
+                        ? "Against the Brain of Cthulhu, make room in the Crimson cavern and use platforms to change height. Clear its Creepers first, keep moving when the Brain teleports, and use a weapon that can hit several targets during the opening phase."
+                        : "For the Eater of Worlds, fight where you have room to move and avoid getting surrounded by its body. Piercing weapons and attacks that hit multiple segments are especially effective. Platforms help you change elevation and avoid its charges.";
 
                 case ProgressionStage.Dungeon:
-                    return "Skeletron\n\n"
-                        + "Find the Old Man standing outside the Dungeon. Speak "
-                        + "to him at night and choose the option to lift his curse. "
-                        + "This summons Skeletron. Defeating him removes the "
-                        + "Dungeon Guardian threat from normal exploration.";
+                    return "Before facing Skeletron, build a roomy arena near the Dungeon with platforms at several heights. Focus on destroying its hands, keep moving during its spinning attack, and avoid staying directly beneath its head. Bring healing and useful buffs.";
 
                 case ProgressionStage.Underworld:
-                    return "Wall of Flesh\n\n"
-                        + "Find a Guide Voodoo Doll dropped by Voodoo Demons "
-                        + "in the Underworld. While the Guide is alive, throw "
-                        + "the doll into lava in the Underworld to summon the "
-                        + "Wall of Flesh. This permanently starts Hardmode in "
-                        + "the world, so prepare your equipment and base first.";
+                    return "For the Wall of Flesh, prepare a long, clear bridge across the Underworld before summoning it. Remove obstacles and watch for gaps or lava. Its advance never stops, so ranged or piercing weapons, reliable mobility, and healing are especially useful.";
 
                 case ProgressionStage.EarlyHardmode:
-                    return GetMechanicalBossInstructions();
+                    return "For the mechanical bosses, upgrade your armor and weapons with Hardmode materials and prepare a large arena with platforms, Campfires, and Heart Lanterns. Wings help considerably. Use piercing or area attacks against the Destroyer, and keep moving against the Twins and Skeletron Prime.";
 
                 case ProgressionStage.PostMech:
-                    return "Plantera\n\n"
-                        + "After all three mechanical bosses are defeated, "
-                        + "Plantera's Bulbs begin growing in the Underground "
-                        + "Jungle. Break a bulb to summon Plantera. Explore "
-                        + "carefully: the bulb can be difficult to spot, and "
-                        + "Plantera becomes more dangerous outside the Jungle.";
+                    return "When fighting Plantera, make a spacious arena in the Underground Jungle and stay inside the Jungle; she becomes much more dangerous outside it. Clear enough room to circle around her, and bring strong mobility, healing, and combat buffs.";
 
                 case ProgressionStage.PostPlantera:
-                    return "Golem\n\n"
-                        + "Defeat Plantera to obtain the Temple Key, then enter "
-                        + "the Jungle Temple. Find the Lihzahrd Altar and use "
-                        + "a Lihzahrd Power Cell on it to summon Golem. Power "
-                        + "Cells are found in Temple chests and dropped by "
-                        + "Lihzahrd enemies.";
+                    return "Inside the Jungle Temple, clear space around the Lihzahrd Altar before summoning Golem. Give yourself room to dodge its attacks, keep your distance when needed, and bring healing potions and your usual combat buffs.";
 
                 case ProgressionStage.PostGolem:
-                    return "Lunatic Cultist\n\n"
-                        + "After Golem is defeated, the Cultists appear at the "
-                        + "Dungeon entrance. Defeat the four Cultists there to "
-                        + "summon the Lunatic Cultist. Make sure you're ready "
-                        + "before engaging them.";
+                    return "When facing the Lunatic Cultist, watch its attack patterns and summoned projectiles rather than rushing in. When it creates copies, identify the real Cultist before attacking; hitting a decoy can trigger a dangerous attack.";
 
                 case ProgressionStage.PostCultist:
-                    return "Moon Lord\n\n"
-                        + "Defeat the four Celestial Pillars that appear after "
-                        + "the Lunatic Cultist. Once the final pillar falls, "
-                        + "the Moon Lord will arrive shortly. Heal, prepare an "
-                        + "arena, and make sure your equipment is upgraded.";
+                    return "For the Moon Lord, bring your strongest available equipment, plenty of healing, and a long route or arena with room to dodge. Focus on the hands and head before attacking the exposed core. Watch for the eye-beam and keep moving.";
 
                 default:
-                    return "There are no remaining bosses in the main progression. "
-                        + "You can pursue optional bosses, events, achievements, "
-                        + "or whatever projects interest you.";
+                    return "For optional challenges, prepare an arena suited to the encounter, bring your strongest available equipment, and choose buffs that complement your build. If you have a particular boss in mind, I can offer more specific advice.";
             }
         }
 
-        private static string GetMechanicalBossInstructions()
-        {
-            string instructions = "Mechanical bosses\n\n"
-                + "You must defeat all three mechanical bosses. Their "
-                + "summoning items can be used only at night and are crafted "
-                + "at a Mythril or Orichalcum Anvil:\n";
-
-            if (!NPC.downedMechBoss2)
-            {
-                instructions += "• Mechanical Eye (The Twins): 3 Lenses, "
-                    + "5 Iron or Lead Bars, and 6 Souls of Light.\n";
-            }
-
-            if (!NPC.downedMechBoss1)
-            {
-                instructions += "• Mechanical Worm (The Destroyer): 6 Rotten "
-                    + "Chunks or Vertebrae, 5 Iron or Lead Bars, and "
-                    + "6 Souls of Night.\n";
-            }
-
-            if (!NPC.downedMechBoss3)
-            {
-                instructions += "• Mechanical Skull (Skeletron Prime): 30 Bones, "
-                    + "5 Iron or Lead Bars, 3 Souls of Light, and "
-                    + "3 Souls of Night.\n";
-            }
-
-            instructions += "After the first Demon or Crimson Altar is broken, "
-                + "an undefeated mechanical boss has a 10% chance to appear "
-                + "naturally at dusk. You can fight the remaining bosses in any order.";
-
-            return instructions;
-        }
     }
 }

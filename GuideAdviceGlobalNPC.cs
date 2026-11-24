@@ -14,10 +14,10 @@ namespace GuidesAdvice
             if (npc.type != NPCID.Guide)
                 return;
 
-            // Most of the time we leave the vanilla randomized dialogue untouched.
-            // Occasionally, a stage-appropriate mod message is selected as an
-            // additional entry in the effective dialogue pool.
+            // Preserve vanilla randomized dialogue, with occasional stage-appropriate additions.
             GuideAdvicePlayer player = Main.LocalPlayer.GetModPlayer<GuideAdvicePlayer>();
+            player.ShowingWhatHelps = false;
+
             if (Main.rand.Next(4) == 0)
                 chat = Progression.GuideSmallTalk.GetMessage(player);
         }
@@ -29,17 +29,21 @@ namespace GuidesAdvice
             if (npc.type != NPCID.Guide)
                 return;
 
-            // Our Hint button replaces the vanilla Guide Tip button.
+            // Replace the vanilla Guide Tip in its original position instead of appending
+            // our buttons after the default interactions, which can push Hint onto a new row.
             var vanillaTip = interactions.Interactions
                 .OfType<NPCInteractions.Actions.GuideTip>()
                 .FirstOrDefault();
 
-            if (vanillaTip != null)
-                interactions.Disable(vanillaTip);
 
+            // Housing advice is now part of What's Next? until the Guide has a home.
+            interactions.Disable(NPCInteractionDatabase.HousingButton);
+            if (vanillaTip != null){
+                    interactions.InsertBefore(new HintInteraction(), vanillaTip);
+                    interactions.Disable(vanillaTip);
+                }
+                
             interactions.Append(new WhatsNextInteraction());
-            interactions.Append(new HowDoIInteraction());
-            interactions.Append(new HintInteraction());
         }
     }
 }

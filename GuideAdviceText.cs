@@ -1,17 +1,16 @@
 namespace GuidesAdvice
 {
-    // Kept as a small presentation facade so dialogue interactions do not
-    // need to know how progression and hint selection are implemented.
+    // Keeps the interaction classes separate from progression and hint implementation.
     public static class GuideAdviceText
     {
-        public static string GetNextObjective()
+        public static string GetNextObjective(Terraria.NPC guide)
         {
-            return Progression.ProgressionManager.GetNextObjective();
+            return Progression.ProgressionManager.GetNextObjective(guide);
         }
 
-        public static string GetSummonInstructions()
+        public static string GetBossFightTips(Terraria.NPC guide)
         {
-            return Progression.ProgressionManager.GetSummonInstructions();
+            return Progression.BossProgression.GetBossFightTips(guide);
         }
 
         public static string GetRandomHint(GuideAdvicePlayer player)

@@ -12,12 +12,6 @@ namespace GuidesAdvice.Progression.Hints
                     + "is small and pink, so explore carefully."),
 
                 new HintDefinition(
-                    "postmech-life-fruit",
-                    "Life Fruit can begin growing in the Underground Jungle after "
-                    + "the mechanical bosses are defeated. Each one increases "
-                    + "your maximum life beyond the Life Crystal limit."),
-
-                new HintDefinition(
                     "postmech-clentaminator",
                     "The Steampunker sells the Clentaminator. It can help manage "
                     + "biome spread and reshape large areas, though solutions "
