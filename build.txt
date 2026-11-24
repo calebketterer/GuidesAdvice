@@ -1,0 +1,3 @@
+displayName = Guide&#39;s Advice
+author = Vibood
+version = 0.1
