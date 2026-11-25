@@ -43,13 +43,13 @@ namespace GuidesAdvice.Progression
         {
             if (guide != null && guide.homeless)
             {
-                return "We need a livable home! Let's build an enclosed room with walls, a light, table, chair, and door. Feel free to check it with the Housing menu by going to your inventory and clicking the icon shaped like a house.";
+                return "We need a livable home! Let's build an enclosed room with walls, a light, table, chair, and door. Building more houses like this one will allow others to move in!";
             }
 
             switch (GetCurrentStage())
             {
                 case ProgressionStage.EarlyPreHardmode:
-                    return "I'd prepare for the Eye of Cthulhu. Explore underground for Life Crystals and better gear. At night, use a Suspicious Looking Eye (6 Lenses at a Demon or Crimson Altar); it may also appear naturally once your health, defense, and town population are high enough.";
+                    return "I'd prepare for the Eye of Cthulhu. At night, use a Suspicious Looking Eye (6 Lenses at a Demon or Crimson Altar); it may also appear naturally once your health, defense, and town population are high enough.";
 
                 case ProgressionStage.EvilBiome:
                     return WorldGen.crimson

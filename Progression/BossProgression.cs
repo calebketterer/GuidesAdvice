@@ -21,16 +21,13 @@ namespace GuidesAdvice.Progression
         {
             if (guide != null && guide.homeless)
             {
-                return "For my room, use player-placed walls and a closed frame. A Work "
-                    + "Bench counts as a table, a Torch as a light, and a Wood Platform "
-                    + "can serve as the entrance. Leave a solid floor tile with room "
-                    + "above; the Housing menu will show what's missing.";
+                return "Make sure there's enough space, but not too much! Check by going to the right side of your inventory and clicking the icon shaped like a house.";
             }
 
             switch (ProgressionManager.GetCurrentStage())
             {
                 case ProgressionStage.EarlyPreHardmode:
-                    return "For the Eye of Cthulhu, build a long platform arena and add Campfires for regeneration. Prioritize movement with boots, a double jump, or a grappling hook. A bow or other ranged weapon lets you keep your distance; bring healing potions.";
+                    return "Before the Eye of Cthulhu, explore underground for Life Crystals and better gear. Consider building a long platform arena with Campfires for regeneration. Prioritize movement with boots, a double jump, or a grappling hook. A bow or other ranged weapon lets you keep your distance. Don't forget healing potions!";
 
                 case ProgressionStage.EvilBiome:
                     return WorldGen.crimson
